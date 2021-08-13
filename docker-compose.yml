@@ -3,12 +3,15 @@ services:
     build: .
     entrypoint: bundle
     command: exec rackup -o '0.0.0.0' -p '50052'
+    volumes:
+      - .:/usr/src/gem:delegated
 
   bundle:
     build: .
     entrypoint: bundle
     command: check
     volumes:
+      - .:/usr/src/gem:delegated
       - bundle:/usr/local/bundle:delegated
 
   rspec:
@@ -16,6 +19,7 @@ services:
     entrypoint: bundle exec rspec
     command: --version
     volumes:
+      - .:/usr/src/gem:delegated
       - bundle:/usr/local/bundle:delegated
 
 volumes:
