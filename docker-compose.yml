@@ -1,0 +1,22 @@
+services:
+  gem:
+    build: .
+    entrypoint: bundle
+    command: exec rackup -o '0.0.0.0' -p '50052'
+
+  bundle:
+    build: .
+    entrypoint: bundle
+    command: check
+    volumes:
+      - bundle:/usr/local/bundle:delegated
+
+  rspec:
+    build: .
+    entrypoint: bundle exec rspec
+    command: --version
+    volumes:
+      - bundle:/usr/local/bundle:delegated
+
+volumes:
+  bundle: {}
