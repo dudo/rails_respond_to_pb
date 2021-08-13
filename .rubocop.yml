@@ -4,3 +4,6 @@ Style/StringLiteralsInInterpolation:
 
 Layout/LineLength:
   Max: 120
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
