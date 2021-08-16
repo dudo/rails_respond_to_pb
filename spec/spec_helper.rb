@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_respond_to_rpc'
+require 'rails_respond_to_pb'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

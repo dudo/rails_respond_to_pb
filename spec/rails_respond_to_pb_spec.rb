@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe RailsRespondToRpc do
+RSpec.describe RailsRespondToPb do
   it 'has a version number' do
-    expect(RailsRespondToRpc::VERSION).not_to be nil
+    expect(RailsRespondToPb::VERSION).not_to be nil
   end
 
   xit 'does something useful' do

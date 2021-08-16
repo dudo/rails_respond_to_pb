@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative 'lib/rails_respond_to_rpc/version'
+require_relative 'lib/rails_respond_to_pb/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'rails_respond_to_rpc'
-  spec.version       = RailsRespondToRpc::VERSION
+  spec.name          = 'rails_respond_to_pb'
+  spec.version       = RailsRespondToPb::VERSION
   spec.authors       = ['Brett C. Dudo']
   spec.email         = ['brett@dudo.io']
 
   spec.summary       = 'Middleware for a Rails App providing functionality for gRPC and Twirp'
   spec.description   = 'Middleware for a Rails App providing functionality for gRPC and Twirp'
-  spec.homepage      = 'https://github.com/dudo/rails_respond_to_rpc'
+  spec.homepage      = 'https://github.com/dudo/rails_respond_to_pb'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 3.0.0')
 
