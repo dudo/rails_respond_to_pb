@@ -9,6 +9,10 @@ services:
     volumes:
       - .:/usr/src/gem:delegated
       - bundle:/usr/local/bundle:delegated
+      - ~/.gitconfig:/etc/gitconfig:ro
+      - ~/.ssh:/root/.ssh:ro
+      - ~/.gemrc:/etc/.gemrc:ro
+      - ~/.local/share/gem/credentials:/etc/.local/share/gem/credentials:ro
 
   rspec:
     <<: *bundle

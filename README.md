@@ -33,7 +33,7 @@ This gem loads Rails middleware that routes to services with Controllers as Hand
     - assumes a `ThingsService` routes to a `ThingsController`
 - loads any `_twirp.rb` files may exist within any folder of your app's `lib` directory
 - allows a controller to `respond_to` the `pb` format
-  - currently you'd respond with a `render plain: ThingResponse.new(id: 1, name: 'Foo').proto`
+  - currently you'd respond with a `render plain: ThingResponse.new(id: 1, name: 'Foo').to_proto`
     - looking into `render pb:`
 
 Generate a proto like this for each of your controllers (`rpc` methods should match your controller methods. `message` is to your discretion):
@@ -72,11 +72,34 @@ message ThingList {
 
 ### Server
 
-This gem will allow your app to respond to Twirp requests. No setup required, other than having the prerequisite Service files loaded in your application.
+This gem will allow your app to respond to Twirp requests. There is little setup required, other than having the prerequisite Service files loaded in your application.
+
+Given a Service file of `ThingsService`, this gem assumes the presence of a `ThingsController` with actions corresponding with `rpc` methods. To allow your controller to respond to the RPC request, simply update the action accordingly:
+
+```ruby
+def index
+  # ... business as usual
+
+  respond_to do |format|
+    format.pb do
+      render plain: ThingList.new(things: Thing.all.map { |r| ThingResponse.new(r.as_json) }).to_proto
+    end
+    format.json { render: Thing.all.as_json } # or whatever your controller responds to usually
+  end
+end
+```
+
+The **required** setup here is:
+
+```ruby
+respond_to do |format|
+    format.pb do
+      render plain: YourProtoResponse.to_proto
+```
 
 ### Client
 
-Assuming you have the prerequisite Client files loaded in your application, you can connect to a Twirp server
+Assuming you have the prerequisite Client files loaded in your application, you can connect to a Twirp server as usual:
 
 ```ruby
 client = ThingsClient.new('http://localhost:3000')
@@ -139,7 +162,7 @@ I typically add an alias to make working with dockerized apps easier. This assum
 alias dr="docker compose run --rm "
 ```
 
-After checking out the repo, run `dr bundle install` to spin up a container, and install dependencies. Then, run `dr rspec spec` to run the tests. You can also run `dr bundle exec console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `dr bundle install` to spin up a container, and install dependencies. Then, run `dr rspec spec` to run the tests. You can also run `dr bundle console` for an interactive prompt that will allow you to experiment.
 
 To release a new version, update the version number in `version.rb`, and then run `dr bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
