@@ -31,7 +31,7 @@ This gem loads Rails middleware that routes to services with Controllers as Hand
 - assumes a single `ThingsService` per controller
   - Typical Rails namey-ness conventions are followed here
     - assumes a `ThingsService` routes to a `ThingsController`
-- loads any `_twirp.rb` files may exist within any folder of your app's `lib` directory
+- loads any `_twirp.rb` files that exist within your app's `lib` directory
 - allows a controller to `respond_to` the `pb` format
   - currently you'd respond with a `render plain: ThingResponse.new(id: 1, name: 'Foo').to_proto`
     - looking into `render pb:`
@@ -107,6 +107,18 @@ query = ThingFilter.new name: 'foo'
 client.index(query)
 ```
 
+## Development
+
+I typically add an alias to make working with dockerized apps easier. This assumes [docker](https://docs.docker.com/get-docker/) is running.
+
+```sh
+alias dr="docker compose run --rm "
+```
+
+After checking out the repo, run `dr bundle install` to spin up a container, and install dependencies. Then, run `dr rspec spec` to run the tests. You can also run `dr bundle console` for an interactive prompt that will allow you to experiment.
+
+To release a new version, update the version number in `version.rb`, and then run `dr bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
 ### Building protos
 
 For inspiration on how to build proto files locally (and working with docker-compose), here are some services to use within your application:
@@ -153,18 +165,6 @@ FROM ruby:3
 # Install necessary executable to build protos
 COPY --from=go /go/bin /usr/local/bin
 ```
-
-## Development
-
-I typically add an alias to make working with dockerized apps easier. This assumes [docker](https://docs.docker.com/get-docker/) is running.
-
-```sh
-alias dr="docker compose run --rm "
-```
-
-After checking out the repo, run `dr bundle install` to spin up a container, and install dependencies. Then, run `dr rspec spec` to run the tests. You can also run `dr bundle console` for an interactive prompt that will allow you to experiment.
-
-To release a new version, update the version number in `version.rb`, and then run `dr bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
