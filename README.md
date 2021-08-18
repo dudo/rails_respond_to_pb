@@ -31,6 +31,7 @@ This gem loads Rails middleware that routes to services with Controllers as Hand
 - assumes a single `ThingsService` per controller
   - Typical Rails namey-ness conventions are followed here
     - assumes a `ThingsService` routes to a `ThingsController`
+    - looking into building generating proto files from controllers
 - loads any `_twirp.rb` files that exist within your app's `lib` directory
 - allows a controller to `respond_to` the `pb` format
   - currently you'd respond with a `render plain: ThingResponse.new(id: 1, name: 'Foo').to_proto`
