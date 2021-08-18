@@ -98,6 +98,15 @@ respond_to do |format|
       render plain: YourProtoResponse.to_proto
 ```
 
+Of note, if you're trying to wire up **entirely new** methods, you do **NOT** need this gem at all, and you can simply add this to your routes file:
+
+```ruby
+handler = ThingsHandler.new()
+service = ThingsService.new(handler)
+
+mount service, at: service.full_name
+```
+
 ### Client
 
 Assuming you have the prerequisite Client files loaded in your application, you can connect to a Twirp server as usual:
