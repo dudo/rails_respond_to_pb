@@ -12,7 +12,7 @@ services:
       - ~/.gitconfig:/etc/gitconfig:ro
       - ~/.ssh:/root/.ssh:ro
       - ~/.gemrc:/etc/.gemrc:ro
-      - ~/.local/share/gem/credentials:/etc/.local/share/gem/credentials:ro
+      - ~/.local/share/gem/credentials:/root/.local/share/gem/credentials:ro
 
   rspec:
     <<: *bundle
