@@ -29,7 +29,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_runtime_dependency 'grpc-tools', '~> 1.38'
   spec.add_runtime_dependency 'rails', ENV['RAILS_VERSION'] || '>= 6'
+  spec.add_runtime_dependency 'twirp', '~> 1.7'
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
