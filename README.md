@@ -1,5 +1,7 @@
 # rails_respond_to_pb
 
+[![Gem Version](https://badge.fury.io/rb/rails_respond_to_pb.svg)](https://badge.fury.io/rb/rails_respond_to_pb)
+
 This gem allows you to route RPC calls via protobuf to an existing rails controller. Currently supporting:
 
 - [Twirp](https://github.com/twitchtv/twirp-ruby)
