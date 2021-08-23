@@ -47,11 +47,11 @@ syntax = "proto3";
 service Things {
   // these rpc methods are important - use what's in the corresponding ThingsController.
   // whatever is sent as an argument will be made available to the controller as `params`
-  rpc create (ThingParams) returns (ThingResponse);
-  rpc show (ThingParams) returns (ThingResponse);
-  rpc index (ThingFilter) returns (ThingList);
-  rpc update (ThingParams) returns (ThingResponse);
-  rpc destroy (ThingParams) returns (ThingResponse);
+  rpc Create (ThingParams) returns (ThingResponse);
+  rpc Show (ThingParams) returns (ThingResponse);
+  rpc Index (ThingFilter) returns (ThingList);
+  rpc Update (ThingParams) returns (ThingResponse);
+  rpc Destroy (ThingParams) returns (ThingResponse);
 }
 
 message ThingParams {
