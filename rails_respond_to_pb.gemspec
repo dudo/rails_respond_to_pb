@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'Middleware for a Rails App providing functionality for gRPC and Twirp'
   spec.homepage      = 'https://github.com/dudo/rails_respond_to_pb'
   spec.license       = 'MIT'
-  spec.required_ruby_version = Gem::Requirement.new('>= 3.0.0')
+  spec.required_ruby_version = Gem::Requirement.new('>= 2.7')
 
   # spec.metadata['allowed_push_host'] = 'http://mygemserver.com'
 
