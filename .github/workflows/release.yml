@@ -8,16 +8,15 @@ on:
 jobs:
   release-please:
     runs-on: ubuntu-latest
-    env:
-      REPO: ${GITHUB_REPOSITORY##*/}
     steps:
       - uses: GoogleCloudPlatform/release-please-action@v2
         id: release
+        env:
+          INPUT_PACKAGE_NAME: ${GITHUB_REPOSITORY##*/}
+          INPUT_VERSION_FILE: lib/$REPO/version.rb
         with:
           release-type: ruby
-          package-name: $REPO
           bump-minor-pre-major: true
-          version-file: lib/$REPO/version.rb
       - uses: actions/checkout@v2
         if: ${{ steps.release.outputs.release_created }}
       - uses: ruby/setup-ruby@v1
