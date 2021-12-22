@@ -96,8 +96,8 @@ The **required** setup here is:
 
 ```ruby
 respond_to do |format|
-    format.pb do
-      render plain: YourProtoResponse.to_proto
+  format.pb do
+    render plain: YourProtoResponse.to_proto
 ```
 
 Of note, if you're trying to wire up **entirely new** methods, you do **NOT** need this gem at all, and you can simply add this to your routes file:
