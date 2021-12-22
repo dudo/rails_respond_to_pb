@@ -33,10 +33,10 @@ class RespondToPb
   end
 
   def service_class
-    ::ActiveSupport::Dependencies.constantize("#{@resource}Service")
+    "#{@resource}Service".constantize
   end
 
   def controller_class
-    ::ActiveSupport::Dependencies.constantize("#{@resource}Controller")
+    "#{@resource}Controller".constantize
   end
 end
