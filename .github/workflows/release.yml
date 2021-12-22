@@ -12,7 +12,7 @@ jobs:
       - name: Set ENV
         run: |
           echo INPUT_PACKAGE_NAME=${GITHUB_REPOSITORY##*/} >> $GITHUB_ENV
-          echo INPUT_VERSION_FILE=lib/${INPUT_PACKAGE_NAME}/version.rb >> $GITHUB_ENV
+          echo INPUT_VERSION_FILE=lib/${GITHUB_REPOSITORY##*/}/version.rb >> $GITHUB_ENV
       - uses: GoogleCloudPlatform/release-please-action@v2
         id: release
         with:
