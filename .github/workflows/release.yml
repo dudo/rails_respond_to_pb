@@ -9,14 +9,17 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
+      - name: Set ENV
+        run: |
+          echo INPUT_PACKAGE_NAME=${GITHUB_REPOSITORY##*/} >> $GITHUB_ENV
+          echo INPUT_VERSION_FILE=lib/${INPUT_PACKAGE_NAME}/version.rb >> $GITHUB_ENV
       - uses: GoogleCloudPlatform/release-please-action@v2
         id: release
-        env:
-          INPUT_PACKAGE_NAME: ${GITHUB_REPOSITORY##*/}
-          INPUT_VERSION_FILE: lib/$REPO/version.rb
         with:
           release-type: ruby
+          package-name: ${{ env.INPUT_PACKAGE_NAME }}
           bump-minor-pre-major: true
+          version-file: ${{ env.INPUT_VERSION_FILE }}
       - uses: actions/checkout@v2
         if: ${{ steps.release.outputs.release_created }}
       - uses: ruby/setup-ruby@v1
