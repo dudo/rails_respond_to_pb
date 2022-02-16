@@ -1,6 +1,5 @@
 services:
   bundle: &bundle
-    env_file: .env
     stdin_open: true
     tty: true
     build: .

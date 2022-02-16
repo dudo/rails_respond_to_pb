@@ -9,6 +9,7 @@ class RespondToPb
 
   def call(env)
     _, @resource, @action = env['PATH_INFO'].split('/')
+    @resource = @resource.split('.').map(&:camelize).join('::')
 
     if env['CONTENT_TYPE'] == Twirp::Encoding::PROTO
       env['HTTP_ACCEPT'] = Twirp::Encoding::PROTO

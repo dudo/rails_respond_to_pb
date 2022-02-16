@@ -15,7 +15,7 @@ module RailsRespondToPb
     end
 
     initializer 'respond_to_pb.require_pb' do
-      Dir["#{Rails.root}/lib/**/*_twirp.rb"].each { |file| require file }
+      Dir["#{Rails.root}/lib/**/*_twirp.rb"].sort.each { |file| require file }
     end
   end
 end
